@@ -3,7 +3,7 @@
 class StaffUtilsTest extends \PHPUnit_Framework_TestCase
 {
 	
-	public function test_saveRecord()
+	public function test_insertRecord()
 	{
 		ob_start();
 		require '/../db_utils/StaffManagement.php';
@@ -12,23 +12,23 @@ class StaffUtilsTest extends \PHPUnit_Framework_TestCase
 		$GLOBALS['db'] = new MockDB;
 		
 		$this->assertEquals(
-			StaffManagement::saveRecord(array("fn", "ln", "fl@m.c", "98", "65")),
+			StaffManagement::insertRecord(array("fn", "ln", "fl@m.c", "98", "65")),
 			"ERROR - fn | ln | fl@m.c | 98 | 65 . Wrong amount of arguments\n");
 		$this->assertEquals(
-			StaffManagement::saveRecord(array("fn", "ln", "flm.c", "98", "65", "c")),
+			StaffManagement::insertRecord(array("fn", "ln", "flm.c", "98", "65", "c")),
 			"ERROR - fn | ln | flm.c | 98 | 65 | c . Invalid email address\n");
 		$this->assertEquals(
-			StaffManagement::saveRecord(array("fn", "ln", "fl@mc", "98", "65", "c")),
+			StaffManagement::insertRecord(array("fn", "ln", "fl@mc", "98", "65", "c")),
 			"ERROR - fn | ln | fl@mc | 98 | 65 | c . Invalid email address\n");
 		$this->assertEquals(
-			StaffManagement::saveRecord(array("fn", "ln", "fl@m.c", "98+", "65", "c")),
+			StaffManagement::insertRecord(array("fn", "ln", "fl@m.c", "98+", "65", "c")),
 			"ERROR - fn | ln | fl@m.c | 98+ | 65 | c . Invalid first phone number\n");
 		$this->assertEquals(
-			StaffManagement::saveRecord(array("fn", "ln", "fl@m.c", "98", "6.5", "c")),
+			StaffManagement::insertRecord(array("fn", "ln", "fl@m.c", "98", "6.5", "c")),
 			"ERROR - fn | ln | fl@m.c | 98 | 6.5 | c . Invalid second phone number\n");
 		$this->assertEquals(
-			StaffManagement::saveRecord(array("fn", "ln", "fl@m.c", "98", "65", "c")),
-			"SAVE - fn | ln | fl@m.c | 98 | 65 | c\n");
+			StaffManagement::insertRecord(array("fn", "ln", "fl@m.c", "98", "65", "c")),
+			"INSERT - fn | ln | fl@m.c | 98 | 65 | c\n");
 	}
 
 	
