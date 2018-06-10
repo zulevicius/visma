@@ -4,7 +4,7 @@
  
  ## Technical specs
  
- The project is programmed with PHP 5.6 and uses MySQL database to store data. All functions are executed from CLI:
+ The project is programmed with PHP 5.6 and uses MySQL database to store data. All functions are executed from staff.php using CLI:
  
     Insert - create new record, type * to leave optional field empty
     -i firstname lastname email phonenumber1 [phonenumber2 comment]
